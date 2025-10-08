@@ -21,6 +21,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/postEmployee") public Employee postEmployee(@RequestBody Employee em){
+
         employeeRepository.save(em);
         return em;
     }
@@ -45,9 +46,8 @@ public class EmployeeController {
         return ResponseEntity.ok(updatedEmployee);
     }
 
-    @DeleteMapping("/deleteEmployee/{id}") public ResponseEntity<Map<String,
-                Boolean>> deleteEmployee(@PathVariable long id){
-        System.out.println("Inside update"); employeeRepository.deleteById(id);
+    @DeleteMapping("/deleteEmployee/{id}") public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable long id){
+        employeeRepository.deleteById(id);
         Map<String, Boolean> response = new HashMap<String, Boolean>();
         response.put("deleted", Boolean.TRUE); return ResponseEntity.ok(response);
 
